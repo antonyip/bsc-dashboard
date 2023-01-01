@@ -6,7 +6,7 @@ import {
 import ErrorPage from './pages/ErrorPage'
 import RootPage from './pages/RootPage'
 import Index from './pages/Index'
-import Blockchain from './pages/Blockchain'
+import Fees from './pages/Fees'
 import Speed from './pages/Speed'
 import Users from './pages/Users'
 import AboutPage from './pages/AboutPage'
@@ -33,7 +33,7 @@ function App() {
         },
         {
           path: 'Fees/',
-          element: <Blockchain />,
+          element: <Fees />,
         },
         {
           path: 'About/',
