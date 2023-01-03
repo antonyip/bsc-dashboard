@@ -41,10 +41,10 @@ const template = (
 ) => {
   return (
     <Container className="bg-amber-100 rounded-4 p-4">
-      <Row>
-        <Col xs="4">{needSpinner ? <Spinner /> : <></>}</Col>
-        <Col>{chartTitle}</Col>
-        <Col xs="4">
+      <Row className="flex">
+        <Col className="flex basis-1/2 text-left h4">{chartTitle}</Col>
+        <Col className="flex justify-start">{needSpinner ? <Spinner /> : <></>}</Col>
+        <Col className="flex justify-end">
           <SQLButton sqlQuery={chartQuery}></SQLButton>
           <JSONButton
             jsonData={chartJsonData || { error: "Chart Not Loaded Yet..." }}
@@ -68,18 +68,21 @@ export default function MultiAxisLineBarChartV2({
     return template(<EmptyChart />, chartTitle, chartQuery, null, true);
   }
 
-  const yAxisLabel = chartYAxisLabel || [""];
+  if (chartDataLoad.error)
+  {
+    return <div>Something went wrong with the query...</div>
+  }
 
-  //console.log(chartDataLoad)
+  //console.log(chartDataLoad);
 
   // extract the data into arrays
-  const chartXAxisData = []
-  const chartY1AxisData = []
-  const chartY2AxisData = []
-  chartDataLoad.rows.forEach(element => {
-    chartXAxisData.push(element[0])
-    chartY1AxisData.push(element[1])
-    chartY2AxisData.push(element[2])
+  const chartXAxisData = [];
+  const chartY1AxisData = [];
+  const chartY2AxisData = [];
+  chartDataLoad.rows.forEach((element) => {
+    chartXAxisData.push(element[0]);
+    chartY1AxisData.push(element[1]);
+    chartY2AxisData.push(element[2]);
   });
 
   // get y axis values

@@ -14,7 +14,7 @@ export default function Users() {
           <GenerateChart
             chartQuery={GetWeeklyNewSenderQuery}
             chartType="MultiAxisLineBarChart"
-            chartTitle="Total/New Senders Per Week"
+            chartTitle="Senders Per Week"
             chartFlipYData={true}
             chartYAxisLabel={["Total Senders","New Senders Per Week"]}
             chartBackgroundColors={[CHARTCOLORS.BLACK,CHARTCOLORS.COLOR1] }

@@ -1,45 +1,78 @@
+import { useRef } from "react";
 import {
   Card,
   CardTitle,
-  CardSubtitle,
   CardBody,
   CardLink,
   CardText,
+  Container,
+  Row,
+  Col,
 } from "reactstrap";
-export default function AboutPage() {
+
+function SmallCard({ title, text, link }) {
+  const _blank = useRef("_blank")
   return (
-    <Card
-      style={{
-        width: "24rem",
-      }}
-    >
+    <Card className="bg-teal-100">
       <CardBody>
-        <CardTitle className="h1">About Me!</CardTitle>
-        <CardSubtitle className="mb-2 text-muted" tag="h2">
-          Hi! I'm Anton. Just a programmer looking for fun things to do!
-        </CardSubtitle>
+        <CardTitle className="h3">{title}</CardTitle>
       </CardBody>
       <CardBody>
-        <CardText className="p-2">You can find the sources of this project at... </CardText>
+        <CardText className="p-2">{text}</CardText>
         <CardText className="p-2">
-          <CardLink className="text-blue-600 rounded border-black border-2 p-2" href="https://github.com/antonyip/bsc-dashboard">
-            Link to Github
+          <CardLink
+            className="text-blue-600 rounded border-black border-2 p-2"
+            href={link}
+            target={_blank}
+          >
+            {link}
           </CardLink>
         </CardText>
-        <br></br>
-        <CardText className="p-2">
-          Visit the organizations that motivated me to build this site!{" "}
-        </CardText>
-        <CardText className="p-2">
-          <CardLink className="text-blue-600 rounded border-black border-2 p-2" href="https://flipsidecrypto.xyz">FlipsideCrypto</CardLink>{" "}
-        </CardText>
-        <CardText className="p-2">
-          <CardLink className="text-blue-600 rounded border-black border-2 p-2" href="https://metricsdao.xyz">MetricsDAO</CardLink>
-        </CardText>
-        <br></br>
-        <CardLink className="text-blue-600 rounded border-black border-2 p-2" href="http://www.antonyip.com">www.antonyip.com</CardLink>
-        <CardLink className="text-blue-600 rounded border-black border-2 p-2" href="https://twitter.com/msgAnton">@msgAnton</CardLink>
       </CardBody>
     </Card>
+  );
+}
+
+export default function AboutPage() {
+  return (
+    <Container className="pb-1">
+      <Row className="pb-2">
+        <Card className="bg-teal-700 text-black">
+          <Col className="h1">About Me</Col>
+        </Card>
+      </Row>
+      <Row className="pb-2">
+        <Col>
+          <SmallCard
+            title={"Website"}
+            text={"Visit me!"}
+            link={"https://www.antonyip.com"}
+          ></SmallCard>
+        </Col>
+        <Col>
+          <SmallCard
+            title={"Twitter"}
+            text={"A not-very active account!"}
+            link={"https://twitter.com/msgAnton"}
+          ></SmallCard>
+        </Col>
+        <Col>
+          <SmallCard
+            title={"Flipside Bounties"}
+            text={"Look at my best work!"}
+            link={"https://flipsidecrypto.xyz/Antonidas"}
+          ></SmallCard>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <SmallCard
+            title={"MetricsDAO"}
+            text={"Bounty Provider"}
+            link={"https://metricsdao.xyz"}
+          ></SmallCard>
+        </Col>
+      </Row>
+    </Container>
   );
 }

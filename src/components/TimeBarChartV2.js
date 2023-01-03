@@ -33,10 +33,10 @@ const template = (
 ) => {
   return (
     <Container className="bg-amber-100 rounded-4 p-4">
-      <Row>
-        <Col xs="4">{needSpinner ? <Spinner /> : <></>}</Col>
-        <Col>{chartTitle}</Col>
-        <Col xs="4">
+      <Row className="flex">
+        <Col className="flex basis-1/2 text-left h4">{chartTitle}</Col>
+        <Col className="flex justify-start">{needSpinner ? <Spinner /> : <></>}</Col>
+        <Col className="flex justify-end">
           <SQLButton sqlQuery={chartQuery}></SQLButton>
           <JSONButton
             jsonData={chartJsonData || { error: "Chart Not Loaded Yet..." }}
@@ -57,6 +57,11 @@ export default function TimeBarChartV2({
 }) {
   if (!chartDataLoad) {
     return template(<EmptyChart />, chartTitle, chartQuery, null, true);
+  }
+
+  if (chartDataLoad.error)
+  {
+    return <div>Something went wrong with the query...</div>
   }
 
   const yAxisLabel = chartYAxisLabel || [""];
